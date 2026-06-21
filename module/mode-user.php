@@ -39,10 +39,22 @@ function insert($data) {
         return false;
     }
 
-    $sqlUser = "INSERT INTO tbl_user VALUES (null, '$username', '$fullname', '$pass', '$level', '$address', '$gambar')";
+    $sqlUser = "INSERT INTO tbl_user VALUES (null, '$username', '$fullname', '$pass', '$address', '$level', '$gambar')";
     mysqli_query($koneksi, $sqlUser);
 
     return mysqli_affected_rows($koneksi);
 }
+
+function delete($id, $foto) {
+    global $koneksi;
+
+    $sqlDel = "DELETE FROM tbl_user WHERE userid = '$id'";
+    mysqli_query($koneksi, $sqlDel);
+
+    if ($foto != 'default.png') {
+        unlink ('../asset/image/' . $foto);
+    }
+    return mysqli_affected_rows($koneksi);
+} 
 
 ?>

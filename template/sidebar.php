@@ -103,7 +103,7 @@
             </li>
             <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-folder text-sm"></i>
+              <i class="nav-icon fas fa-cog text-sm"></i>
               <p>
                 Pengaturan
                 <i class="fas fa-angle-left right"></i>
@@ -111,9 +111,9 @@
             </a>
             <ul class="nav nav-treeview">
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="<?= $main_url ?>user/data-user.php" class="nav-link">
                         <i class="far fa-circle nav-icon text-sm"></i>
-                        <p>Users</p>
+                        <p>Pengguna</p>
                     </a>
                 </li> 
             </ul>
