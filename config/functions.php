@@ -1,6 +1,6 @@
 <?php
 
-function uploadimg() {
+function uploadimg($url = null) {
     $namaFile = $_FILES['image']['name'];
     $ukuran = $_FILES['image']['size'];
     $tmp = $_FILES['image']['tmp_name'];
@@ -11,18 +11,34 @@ function uploadimg() {
     $ekstensiGambar = strtolower(end($ekstensiGambar));
 
     if (!in_array($ekstensiGambar, $ekstensiGambarValid)) {
-        echo '<script>
-            alert("File yang anda upload bukan file gambar, Data gagal ditambahkan!");
+        if ($url != null) {
+            echo '<script>
+                alert("File yang anda upload bukan file gambar, Data gagal di-update!");
+                document.location.href = "' . $url . '";
             </script>';
-        return false;
+            die();
+        } else {
+            echo '<script>
+                alert("File yang anda upload bukan file gambar, Data gagal ditambahkan!");
+            </script>';
+            return false;
+        }
     }
 
     // validasi ukuran file gambar max 1MB
     if ($ukuran > 1000000) {
-        echo '<script>
-            alert("Ukuran gambar tidak boleh melebihi 1MB, Data gagal ditambahkan!");
+        if ($url != null) {
+            echo '<script>
+                alert("Ukuran gambar melebihi 1MB, Data gagal di-update!");
+                document.location.href = "' . $url . '";
             </script>';
-        return false;
+            die();
+        } else {
+            echo '<script>
+                alert("File yang anda upload bukan file gambar, Data gagal ditambahkan!");
+            </script>';
+            return false;
+        }
     }
 
     $namaFileBaru = rand(10, 1000) . '-' . $namaFile;

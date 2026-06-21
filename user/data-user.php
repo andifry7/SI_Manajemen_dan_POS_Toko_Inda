@@ -73,12 +73,11 @@ require "../template/sidebar.php";
                                         ?>
                                     </td>
                                     <td>
-                                        <a href="" class="btn btn-warning btn-sm" title="edit user"><i class="fas fa-user-edit"></i></a>
+                                        <a href="edit-user.php?id=<?= $user['userid'] ?>" class="btn btn-warning btn-sm" title="edit user"><i class="fas fa-user-edit"></i></a>
                                         <a href="del-user.php?id=<?= $user['userid'] ?> &foto<?= $user['foto'] ?>" class="btn btn-danger btn-sm" title="hapus user"><i class="fas fa-user-times"></i></a>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
-                            ?>
                         </tbody>
                     </table>
                 </div>

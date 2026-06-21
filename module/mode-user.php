@@ -57,4 +57,69 @@ function delete($id, $foto) {
     return mysqli_affected_rows($koneksi);
 } 
 
+function selectUser1($level) {
+    $result = null;
+    if ($level == 1) {
+        $result = "selected";
+    }
+    return $result;
+}
+
+function selectUser2($level) {
+    $result = null;
+    if ($level == 2) {
+        $result = "selected";
+    }
+    return $result;
+}
+
+function update($data) {
+    global $koneksi;
+
+    $iduser = mysqli_real_escape_string($koneksi, $data['id']);
+    $username = strtolower(mysqli_real_escape_string($koneksi, $data['username']));
+    $fullname = mysqli_real_escape_string($koneksi, $data['fullname']);
+    $level = mysqli_real_escape_string($koneksi, $data['level']);
+    $address = mysqli_real_escape_string($koneksi, $data['address']);
+    $gambar = mysqli_real_escape_string($koneksi, $_FILES['image']['name']);
+    $fotoLama = mysqli_real_escape_string($koneksi, $data['oldImg']);
+
+    // cek username sekarang
+    $queryUsername = mysqli_query($koneksi, "SELECT * FROM tbl_user WHERE userid = $iduser");
+    $dataUsername = mysqli_fetch_assoc($queryUsername);
+    $curUsername = $dataUsername['username'];
+
+    // cek username baru
+    $newUsername = mysqli_query($koneksi, "SELECT username FROM tbl_user WHERE username = '$username'");
+
+    if ($username !== $curUsername) {
+        if (mysqli_num_rows($newUsername)) {
+            echo '<script>
+                alert("Username sudah digunakan, update data pengguna gagal!");
+                document.location.href = "data-user.php";
+            </script>';
+        return false;
+        }
+    }
+
+    // cek gambar
+    if ($gambar != null) {
+        $url = "data-user.php";
+        $imgUser = uploadimg($url);
+        if ($fotoLama != 'default.png') {
+            @unlink('../asset/image' . $fotoLama);
+        }
+    } else {
+        $imgUser = $fotoLama;
+    }
+
+    mysqli_query($koneksi, "UPDATE tbl_user SET username = '$username',
+                                                fullname = '$fullname',
+                                                address = '$address',
+                                                level = '$level',
+                                                foto = '$imgUser'
+                                                WHERE userid = $iduser");
+
+    return mysqli_affected_rows($koneksi);
+}
 ?>
