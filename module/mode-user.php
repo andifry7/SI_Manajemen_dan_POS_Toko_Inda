@@ -1,5 +1,10 @@
 <?php
 
+if (userLogin()['level'] != 1) {
+    header("location:" . $main_url . "error-page.php");
+    exit();
+}
+
 function insert($data) {
     global $koneksi;
 
