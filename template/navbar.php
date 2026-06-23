@@ -21,7 +21,7 @@
                     Ganti Password <i class="fas fa-key"></i>
                 </a>
                 <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item text-right">
+                <a href="<?= $main_url ?>auth/logout.php" class="dropdown-item text-right">
                     Logout <i class="fas fa-sign-out-alt"></i>
                 </a>
             </div>

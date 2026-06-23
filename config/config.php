@@ -7,6 +7,7 @@ $user = 'root';
 $pass = '';
 $dbname = 'db_tokoindapos';
 
+/** @var mysqli $koneksi */
 $koneksi = mysqli_connect($host, $user, $pass, $dbname);
 
 // if (mysqli_connect_errno()) {
