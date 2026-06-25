@@ -98,4 +98,22 @@ function menuUser() {
     return $result;
 }
 
+function menuSupplier() {
+    if (userMenu() == 'supplier') {
+        $result = 'active';
+    } else {
+        $result = null;
+    }
+    return $result;
+}
+
+function menuMaster() {
+    if (userMenu() == 'supplier') {
+        $result = 'menu-is-opening menu-open';
+    } else {
+        $result = null;
+    }
+    return $result;
+}
+
 ?>

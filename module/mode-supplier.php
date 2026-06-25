@@ -20,4 +20,13 @@ function insert($data) {
 
 }
 
+function delete($id) {
+    global $koneksi;
+
+    $sqlDelete = "DELETE FROM tbl_supplier WHERE id_supplier = '$id'";
+
+    mysqli_query($koneksi, $sqlDelete);
+    return mysqli_affected_rows($koneksi);
+}
+
 ?>
