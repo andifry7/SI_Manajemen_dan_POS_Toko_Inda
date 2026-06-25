@@ -60,7 +60,7 @@ if (isset($_POST['koreksi'])) {
                 <div class="card-header">
                     <h3 class="card-title"><i class="fas fa-pen fa-sm"></i> Edit Pengguna</h3>
                     <button type="submit" name="koreksi" class="btn btn-primary btn-sm float-right"><i class="fas fa-save"></i> Koreksi</button>
-                    <button type="reset" class="btn btn-danger btn-sm float-right mr-1"><i class="fa fa-times"></i> Reset</button>
+                    <button type="reset" class="btn btn-danger btn-sm float-right mr-1"><i class="fa fa-undo fa-sm"></i> Reset</button>
                 </div>
                 <div class="card-body">
                   <div class="row">
