@@ -53,7 +53,7 @@ if (isset($_POST['koreksi'])) {
       </div><!-- /.container-fluid -->
     </div>
 
-    <section class="content"></section>
+    <section class="content">
         <div class="container-fluid">
             <div class="card">
               <form action="" method="post" enctype="multipart/form-data">
@@ -99,6 +99,7 @@ if (isset($_POST['koreksi'])) {
               </form>
             </div>
         </div>
+      </section>
 
 
 <?php
