@@ -99,7 +99,7 @@ if ($msg == 'updated') {
                                 <td><?= $customer['deskripsi'] ?></td>
                                 <td>
                                     <a href="edit-customer.php?id=<?= $customer['id_customer'] ?>" class="btn btn-sm btn-warning" title="edit customer"><i class="fas fa-pen"></i></a>
-                                    <!-- <a href="del-customer.php?id=<?= $customer['id_customer'] ?>" class="btn btn-sm btn-danger" title="hapus customer" onclick="return confirm('Anda yakin akan menghapus customer ini?')"><i class="fas fa-trash"></i></a> -->
+                                    <a href="del-customer.php?id=<?= $customer['id_customer'] ?>" class="btn btn-sm btn-danger" title="hapus customer" onclick="return confirm('Anda yakin akan menghapus customer ini?')"><i class="fas fa-trash"></i></a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>

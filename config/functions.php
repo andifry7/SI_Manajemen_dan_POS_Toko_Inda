@@ -117,7 +117,7 @@ function menuCustomer() {
 }
 
 function menuMaster() {
-    if (userMenu() == 'supplier') {
+    if (userMenu() == 'supplier' || userMenu() == 'customer') {
         $result = 'menu-is-opening menu-open';
     } else {
         $result = null;
