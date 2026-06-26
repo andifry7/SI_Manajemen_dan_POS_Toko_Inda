@@ -107,6 +107,15 @@ function menuSupplier() {
     return $result;
 }
 
+function menuCustomer() {
+    if (userMenu() == 'customer') {
+        $result = 'active';
+    } else {
+        $result = null;
+    }
+    return $result;
+}
+
 function menuMaster() {
     if (userMenu() == 'supplier') {
         $result = 'menu-is-opening menu-open';
