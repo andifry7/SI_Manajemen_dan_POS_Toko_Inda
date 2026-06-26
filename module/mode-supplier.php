@@ -29,4 +29,24 @@ function delete($id) {
     return mysqli_affected_rows($koneksi);
 }
 
+function update($data) {
+    global $koneksi;
+
+    $id = mysqli_real_escape_string($koneksi, $data['id']);
+    $nama = mysqli_real_escape_string($koneksi, $data['nama']);
+    $telpon = mysqli_real_escape_string($koneksi, $data['telpon']);
+    $ketr = mysqli_real_escape_string($koneksi, $data['ketr']);
+    $alamat = mysqli_real_escape_string($koneksi, $data['alamat']);
+
+    $sqlSupplier = "UPDATE tbl_supplier SET
+                    nama = '$nama',
+                    telpon = '$telpon',
+                    deskripsi = '$ketr',
+                    alamat = '$alamat'
+                    WHERE id_supplier = '$id'";
+    mysqli_query($koneksi, $sqlSupplier);
+
+    return mysqli_affected_rows($koneksi);
+}
+
 ?>
