@@ -71,7 +71,7 @@ if (isset($_POST['simpan'])) {
                             </div>
                             <div class="form-group">
                                 <label for="telpon">Telepon</label>
-                                <input type="text" name="telpon" class="form-control" id="telpon" placeholder="Masukkan nomor telepon customer" pattern="[0-9]{5,}" title="Minimal 5 angka" required>
+                                <input type="text" name="telpon" class="form-control" id="telpon" placeholder="Masukkan nomor telepon customer" pattern="[0-9]{5,}" title="Minimal 5 angka">
                             </div>
                             <div class="form-group">
                                 <label for="ketr">Deskripsi</label>
@@ -79,7 +79,7 @@ if (isset($_POST['simpan'])) {
                             </div>
                             <div class="form-group">
                                 <label for="alamat">Alamat</label>
-                                <textarea name="alamat" id="alamat" rows="3" class="form-control" placeholder="Masukkan alamat customer" required></textarea>
+                                <textarea name="alamat" id="alamat" rows="3" class="form-control" placeholder="Masukkan alamat customer"></textarea>
                             </div>
                         </div>
                     </div>
