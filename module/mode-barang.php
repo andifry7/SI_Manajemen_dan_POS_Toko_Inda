@@ -57,3 +57,15 @@ function insert($data) {
 
     return mysqli_affected_rows($koneksi);
 }
+
+function delete($id, $gbr) {
+    global $koneksi;
+
+    $sqlDel = "DELETE FROM tbl_barang WHERE id_barang = '$id'";
+    mysqli_query($koneksi, $sqlDel);
+    if ($gbr != 'default-brg.jpg') {
+        unlink('../asset/image/' . $gbr);
+    }
+
+    return mysqli_affected_rows($koneksi);
+}

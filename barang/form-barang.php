@@ -79,20 +79,20 @@ if (isset($_POST['simpan'])) {
                                 <label for="kategori">Kategori Barang *</label>
                                 <select name="kategori" class="form-control" id="kategori" required>
                                     <option value="">-- Pilih Kategori --</option>
-                                    <option value="elektronik">Elektronik</option>
-                                    <option value="atk">ATK</option>
-                                    <option value="makanan">Makanan</option>
-                                    <option value="minuman">Minuman</option>
+                                    <option value="Elektronik">Elektronik</option>
+                                    <option value="ATK">ATK</option>
+                                    <option value="Makanan">Makanan</option>
+                                    <option value="Minuman">Minuman</option>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="satuan">Satuan *</label>
                                 <select name="satuan" class="form-control" id="satuan" required>
                                     <option value="">-- Pilih Satuan --</option>
-                                    <option value="piece">Piece</option>
-                                    <option value="botol">Botol</option>
-                                    <option value="kaleng">Kaleng</option>
-                                    <option value="pouch">Pouch</option>
+                                    <option value="Piece">Piece</option>
+                                    <option value="Botol">Botol</option>
+                                    <option value="Kaleng">Kaleng</option>
+                                    <option value="Pouch">Pouch</option>
                                 </select>
                             </div>
                             <div class="form-group">
