@@ -16,23 +16,7 @@ if (!isset($_SESSION['ssLoginPOS'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Print Barcode</title>
     <style>
-        body {
-            margin: 0;
-            padding: 20px;
-        }
-
-        .print-area {
-            display: grid;
-            grid-template-columns: repeat(3, 210px);
-            justify-content: center;
-            gap: 30px;
-        }
-
-        .barcode-item {
-            width: 210px;
-            text-align: center;
-            break-inside: avoid;
-        }
+        <?php include 'style.css'; ?>
     </style>
 </head>
 <body>

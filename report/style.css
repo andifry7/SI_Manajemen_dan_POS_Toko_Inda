@@ -1,0 +1,17 @@
+body {
+  margin: 0;
+  padding: 20px;
+}
+
+.print-area {
+  display: grid;
+  grid-template-columns: repeat(3, 210px);
+  justify-content: center;
+  gap: 30px;
+}
+
+.barcode-item {
+  width: 210px;
+  text-align: center;
+  break-inside: avoid;
+}
