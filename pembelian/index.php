@@ -164,7 +164,7 @@ $noBeli = generateNo();
                         <div class="form-group row mb-2">
                             <label for="ketr" class="col-sm-3 col-form-label">Keterangan</label>
                             <div class="col-sm-9">
-                                <textarea name="ketr" id="ketr" class="form-control form-control-sm"></textarea>
+                                <textarea name="ketr" id="ketr" class="form-control form-control-sm" placeholder="ex. Kulakan/Tambahan/etc..."></textarea>
                             </div>
                         </div>
                     </div>
