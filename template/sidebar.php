@@ -66,7 +66,7 @@
             <?php } ?>
             <li class="nav-header">Transaksi</li>
             <li class="nav-item">
-                <a href="<?= $main_url ?>pembelian" class="nav-link">
+              <a href="<?= $main_url ?>pembelian/index.php" class="nav-link">
                     <i class="nav-icon fas fa-shopping-basket text-sm"></i>
                     <p>
                         Pembelian
@@ -74,7 +74,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link">
+              <a href="<?= $main_url ?>penjualan/index.php" class="nav-link">
                     <i class="nav-icon fas fa-file-invoice text-sm"></i>
                     <p>
                         Penjualan
