@@ -29,6 +29,7 @@ if ($msg == 'deleted') {
     $tgl = $_GET['tgl'];
     delete($idbrg, $idbeli, $qty);
     echo "<script>
+                alert('Barang berhasil dihapus dari daftar pembelian');
                 document.location = '?tgl=$tgl';
     </script>";
 }

@@ -16,6 +16,66 @@ require "../template/header.php";
 require "../template/navbar.php";
 require "../template/sidebar.php";
 
+if (isset($_GET['msg'])) {
+    $msg = $_GET['msg'];
+} else {
+    $msg = '';
+}
+
+// jika barang dihapus
+if ($msg == 'deleted') {
+    $barcode = $_GET['barcode'];
+    $idjual = $_GET['idjual'];
+    $qty = $_GET['qty'];
+    $tgl = $_GET['tgl'];
+    delete($barcode, $idjual, $qty);
+    echo "<script>
+                alert('Barang berhasil dihapus dari daftar penjualan');
+                document.location = '?tgl=$tgl';
+    </script>";
+}
+
+// jika ada barcode yang dikirimkan
+$kode = @$_GET['barcode'] ? $_GET['barcode'] : '';
+if ($kode) {
+    $tgl = $_GET['tgl'];
+    $dataBrg = mysqli_query($koneksi, "SELECT * FROM tbl_barang WHERE barcode = '$kode'");
+    $selectBrg = mysqli_fetch_assoc($dataBrg);
+    if (!mysqli_num_rows($dataBrg)) {
+        echo "<script>
+                alert('Barang dengan barcode $kode tidak ditemukan!');
+                document.location.href = '?tgl=$tgl';
+              </script>";
+    }
+}
+
+// jika tombol tambah barang ditekan
+if (isset($_POST['addbrg'])) {
+    $tgl = $_POST['tglNota'];
+    if (insert($_POST)) {
+        echo "<script>
+            document.location.href = '?tgl=$tgl';
+        </script>";
+    }
+}
+
+// jika tombol simpan ditekan
+if (isset($_POST['simpan'])) {
+    $nota = $_POST['nojual'];
+    if (simpan($_POST)) {
+        echo "<script>
+                alert('Data penjualan berhasil disimpan');
+                window.onload = function() {
+                    let win = window.open('../report/r-struk.php?nota=$nota', 'Struk Belanja', 'width=260, height=400, left=100, top=100', '_blank');
+                    if (win) {
+                        win.focus();
+                        window.location = 'index.php';
+                    }
+                };
+        </script>";
+    }
+}
+
 $nojual = generateNo();
 
 ?>
@@ -69,7 +129,7 @@ $nojual = generateNo();
                         <div class="card card-outline card-danger pt-3 px-3 pb-2">
                             <h6 class="font-weight-bold text-right">Total Penjualan</h6>
                             <h1 class="font-weight-bold text-right" style="font-size: 40pt;">
-                            <input type="hidden" name="total" value="<?= 0 ?>">0
+                            <input type="hidden" name="total" id="total" value="<?= totalJual($nojual) ?>"><?= number_format(totalJual($nojual),0,',','.') ?>
                             </h1>
                         </div>
                     </div>
@@ -78,7 +138,7 @@ $nojual = generateNo();
                     <div class="row">
                         <div class="col-lg-3">
                             <div class="form-group">
-                                <input type="hidden" value="<?= @$_GET['barcode'] ? $selectBrg['id_barang'] : '' ?>" name="barcode">
+                                <input type="hidden" value="<?= @$_GET['barcode'] ? $selectBrg['barcode'] : '' ?>" name="barcode">
                                 <label for="namaBrg">Nama Barang</label>
                                 <input type="text" name="namaBrg" class="form-control form-control-sm" id="namaBrg" value="<?= @$_GET['barcode'] ? $selectBrg['nama_barang'] : '' ?>"readonly>
                             </div>
@@ -137,7 +197,25 @@ $nojual = generateNo();
                             </tr>
                         </thead>
                         <tbody>
-                            
+                            <?php
+                            $no = 1;
+                            $brgDetail = getData("SELECT * FROM tbl_jual_detail WHERE no_jual = '$nojual'");
+                            foreach ($brgDetail as $detail) { ?>
+                                <tr>
+                                    <td><?= $no++ ?></td>
+                                    <td><?= $detail['barcode'] ?></td>
+                                    <td><?= $detail['nama_brg'] ?></td>
+                                    <td><?= $detail['kategori'] ?></td>
+                                    <td class="text-right"><?= number_format($detail['harga_jual'], 0, ',', '.') ?></td>
+                                    <td class="text-right"><?= $detail['qty'] ?></td>
+                                    <td class="text-right"><?= number_format($detail['jml_harga'], 0, ',', '.') ?></td>
+                                    <td class="text-center">
+                                        <a href="?barcode=<?= $detail['barcode'] ?>&idjual=<?= $detail['no_jual'] ?> &qty=<?= $detail['qty'] ?>&tgl=<?= $detail['tgl_jual'] ?>&msg=deleted" class="btn btn-danger btn-sm" title="hapus barang" onclick="return confirm('Anda yakin ingin menghapus barang ini?')"><i class="fas fa-trash"></i></a>
+                                    </td>
+                                </tr>
+                            <?php
+                            }
+                            ?>
                         </tbody>
                     </table>
                 </div>
@@ -147,7 +225,6 @@ $nojual = generateNo();
                             <label for="customer" class="col-sm-3 col-form-label">Customer</label>
                             <div class="col-sm-9">
                                 <select name="customer" id="customer" class="form-control form-control-sm">
-                                    <option value="">-- Pilih Customer --</option>
                                     <?php
                                     $customers = getData("SELECT * FROM tbl_customer");
                                     foreach ($customers as $customer) { ?>
@@ -186,6 +263,30 @@ $nojual = generateNo();
             </form>
         </div>
     </section>
+
+    <script>
+        let barcode = document.getElementById('barcode');
+        let tgl = document.getElementById('tglNota');
+        let qty = document.getElementById('qty');
+        let harga = document.getElementById('harga');
+        let jmlHarga = document.getElementById('jmlHarga');
+        let bayar = document.getElementById('bayar');
+        let kembalian = document.getElementById('kembalian');
+        let total = document.getElementById('total');
+
+
+        barcode.addEventListener('change', function() {
+            document.location.href = '?barcode=' + barcode.value + '&tgl=' + tgl.value;
+        });
+
+        qty.addEventListener('input', function() {
+            jmlHarga.value = qty.value * harga.value;
+        });
+
+        bayar.addEventListener('input', function() {
+            kembalian.value = bayar.value - total.value;
+        });
+    </script>
 
 
 <?php 
