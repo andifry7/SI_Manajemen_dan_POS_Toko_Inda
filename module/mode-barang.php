@@ -85,7 +85,7 @@ function update($data) {
     $gambar = mysqli_real_escape_string($koneksi, $_FILES['image']['name']);
 
     // barcode lama
-    $queryBarcode = mysqli_query($koneksi, "SELECT * FROM tbl_barang WHERE id_barang'$id'");
+    $queryBarcode = mysqli_query($koneksi, "SELECT * FROM tbl_barang WHERE id_barang = '$id'");
     $dataBrg = mysqli_fetch_assoc($queryBarcode);
     $curBarcode = $dataBrg['barcode'];
 
