@@ -144,7 +144,7 @@ $nojual = generateNo();
                 <div class="row">
                     <div class="col-lg-4 p-2">
                         <div class="form-group row mb-2">
-                            <label for="customer" class="col-sm-3 col-form-label col-form-label-sm">Customer</label>
+                            <label for="customer" class="col-sm-3 col-form-label">Customer</label>
                             <div class="col-sm-9">
                                 <select name="customer" id="customer" class="form-control form-control-sm">
                                     <option value="">-- Pilih Customer --</option>
