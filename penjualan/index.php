@@ -117,7 +117,7 @@ $nojual = generateNo();
                             <div class="form-group row mb-2">
                                 <label for="barcode" class="col-sm-2 col-form-label">Barcode</label>
                                 <div class="col-sm-10 input-group">
-                                    <input type="text" name="barcode" id="barcode" value="<?= @$_GET['barcode'] ? $_GET['barcode'] : '' ?>" class="form-control" placeholder="Masukkan barcode barang">
+                                    <input type="text" name="barcode" id="barcode" value="<?= @$_GET['barcode'] ? $_GET['barcode'] : '' ?>" class="form-control" placeholder="Masukkan barcode barang" autofocus>
                                     <div class="input-group-append">
                                         <span class="input-group-text" id="icon-barcode"><i class="fas fa-barcode"></i></span>
                                     </div>
