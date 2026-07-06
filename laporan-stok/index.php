@@ -72,9 +72,9 @@ $stokBrg = getData("SELECT * FROM tbl_barang");
                                     <td>
                                         <?php
                                             if ($stok['stock'] < $stok['stock_minimal']) {
-                                                echo '<span class="badge badge-danger">Stok Kurang</span>';
+                                                echo '<span class="text-danger">Stok Kurang</span>';
                                             } else {
-                                                echo '<span class="badge badge-success">Stok Cukup</span>';
+                                                echo '<span class="text-success">Stok Cukup</span>';
                                             }
                                         ?>
                                     </td>

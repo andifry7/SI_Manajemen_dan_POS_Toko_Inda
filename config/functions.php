@@ -190,4 +190,14 @@ function laporanStock() {
     return $result;
 }
 
+function omzet() {
+    global $koneksi;
+    
+    $queryOmzet = mysqli_query($koneksi, "SELECT SUM(total) AS omzet FROM tbl_jual_head");
+    $data = mysqli_fetch_assoc($queryOmzet);
+    $omzet = number_format($data['omzet'], 0, ',', '.');
+
+    return $omzet;
+}
+
 ?>
