@@ -32,7 +32,7 @@ $dataBeli = getData("SELECT * FROM tbl_beli_head WHERE tgl_beli BETWEEN '$tgl1' 
     <table>
         <thead>
             <tr>
-                <td colspan="5" style="height: 5px;">
+                <td colspan="6" style="height: 5px;">
                     <hr style="margin-bottom: 2px; margin-left: -5px; margin-top: 1px;", size="3", color="gray">
                 </td>
             </tr>
@@ -40,11 +40,12 @@ $dataBeli = getData("SELECT * FROM tbl_beli_head WHERE tgl_beli BETWEEN '$tgl1' 
                 <th>No</th>
                 <th style="width: 120px;">Tgl Pembelian</th>
                 <th style="width: 120px;">ID Pembelian</th>
-                <th style="width: 300px;">Supplier</th>
+                <th style="width: 200px;">Supplier</th>
+                <th style="width: 120px;">Keterangan</th>
                 <th>Total Pembelian</th>
             </tr>
             <tr>
-                <td colspan="5" style="height: 5px;">
+                <td colspan="6" style="height: 5px;">
                     <hr style="margin-bottom: 2px; margin-left: -5px; margin-top: 1px;", size="3", color="gray">
                 </td>
             </tr>
@@ -58,6 +59,7 @@ $dataBeli = getData("SELECT * FROM tbl_beli_head WHERE tgl_beli BETWEEN '$tgl1' 
                     <td align="center"><?= in_date($data['tgl_beli']) ?></td>
                     <td align="center"><?= $data['no_beli'] ?></td>
                     <td ><?= $data['supplier'] ?></td>
+                    <td align="center"><?= $data['keterangan'] ?></td>
                     <td align="center"><?= number_format($data['total'],0,',','.') ?></td>
                 </tr>
             <?php
@@ -66,7 +68,7 @@ $dataBeli = getData("SELECT * FROM tbl_beli_head WHERE tgl_beli BETWEEN '$tgl1' 
         </tbody>
         <tfoot>
             <tr>
-                <td colspan="5" style="height: 5px;">
+                <td colspan="6" style="height: 5px;">
                     <hr style="margin-bottom: 2px; margin-left: -5px; margin-top: 1px;", size="3", color="gray">
                 </td>
             </tr>

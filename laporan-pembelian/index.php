@@ -54,6 +54,7 @@ $pembelian = getData("SELECT * FROM tbl_beli_head");
                                 <th>Tgl Pembelian</th>
                                 <th>Supplier</th>
                                 <th>Total Pembelian</th>
+                                <th>Keterangan</th>
                                 <th style="width: 10%;" class="text-center">Opsi</th>
                             </tr>
                         </thead>
@@ -67,6 +68,7 @@ $pembelian = getData("SELECT * FROM tbl_beli_head");
                                     <td><?= in_date($beli['tgl_beli']) ?></td>
                                     <td><?= $beli['supplier'] ?></td>
                                     <td class="text-center"><?= number_format($beli['total'], 0, ',', '.') ?></td>
+                                    <td><?= $beli['keterangan'] ?></td>
                                     <td class="text-center"><a href="detail-pembelian.php?id=<?= $beli['no_beli'] ?>&tgl=<?= in_date($beli['tgl_beli']) ?>" class="btn btn-sm btn-info" title="rincian barang">Detail</a></td>
                                 </tr>
                             <?php
