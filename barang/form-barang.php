@@ -97,7 +97,7 @@ if (isset($_POST['simpan'])) {
                                 <select name="kategori" class="form-control" id="kategori" required>
                                     <?php
                                         if ($msg != '') {
-                                            $kategori = ["Elektronik", "ATK", "Makanan", "Minuman"];
+                                            $kategori = ["Elektronik", "ATK", "Makanan", "Minuman", "Rokok", "Lainnya"];
                                             foreach ($kategori as $ket) {
                                                 if ($barang['kategori'] == $ket) { ?>
                                                     <option value="<?= $ket ?>" selected><?= $ket ?></option>
@@ -112,6 +112,8 @@ if (isset($_POST['simpan'])) {
                                         <option value="ATK">ATK</option>
                                         <option value="Makanan">Makanan</option>
                                         <option value="Minuman">Minuman</option>
+                                        <option value="Rokok">Rokok</option>
+                                        <option value="Lainnya">Lainnya</option>
                                     <?php
                                         }
                                     ?>
@@ -122,7 +124,7 @@ if (isset($_POST['simpan'])) {
                                 <select name="satuan" class="form-control" id="satuan" required>
                                     <?php
                                         if ($msg != '') {
-                                            $satuan = ["Piece", "Botol", "Kaleng", "Pouch"];
+                                            $satuan = ["Piece", "Botol", "Kaleng", "Pouch", "Pack"];
                                             foreach ($satuan as $sat) {
                                                 if ($barang['satuan'] == $sat) { ?>
                                                     <option value="<?= $sat ?>" selected><?= $sat ?></option>
@@ -137,6 +139,7 @@ if (isset($_POST['simpan'])) {
                                     <option value="Botol">Botol</option>
                                     <option value="Kaleng">Kaleng</option>
                                     <option value="Pouch">Pouch</option>
+                                    <option value="Pack">Pack</option>
                                     <?php
                                         }
                                     ?>
