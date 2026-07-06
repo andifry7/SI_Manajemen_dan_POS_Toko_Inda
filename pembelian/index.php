@@ -11,7 +11,7 @@ require "../config/config.php";
 require "../config/functions.php";
 require "../module/mode-beli.php";
 
-$title = "Transaksi - Toko Inda POS";
+$title = "Transaksi - Toko Inda";
 require "../template/header.php";
 require "../template/navbar.php";
 require "../template/sidebar.php";

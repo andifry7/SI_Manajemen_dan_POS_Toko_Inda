@@ -10,7 +10,7 @@ if (!isset($_SESSION['ssLoginPOS'])) {
 require "config/config.php";
 require "config/functions.php";
 
-$title = "Error Page - Toko Inda POS";
+$title = "Error Page - Toko Inda";
 require "template/header.php";
 require "template/navbar.php";
 require "template/sidebar.php";

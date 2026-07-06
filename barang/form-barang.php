@@ -11,7 +11,7 @@ require "../config/config.php";
 require "../config/functions.php";
 require "../module/mode-barang.php";
 
-$title = "Form Barang - Toko Inda POS";
+$title = "Form Barang - Toko Inda";
 require "../template/header.php";
 require "../template/navbar.php";
 require "../template/sidebar.php";

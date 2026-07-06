@@ -11,7 +11,7 @@ require "../config/config.php";
 require "../config/functions.php";
 require "../module/mode-user.php";
 
-$title = "Update User - Toko Inda POS";
+$title = "Update User - Toko Inda";
 require "../template/header.php";
 require "../template/navbar.php";
 require "../template/sidebar.php";

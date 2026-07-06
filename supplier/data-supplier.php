@@ -11,7 +11,7 @@ require "../config/config.php";
 require "../config/functions.php";
 require "../module/mode-supplier.php";
 
-$title = "Data Supplier - Toko Inda POS";
+$title = "Data Supplier - Toko Inda";
 require "../template/header.php";
 require "../template/navbar.php";
 require "../template/sidebar.php";

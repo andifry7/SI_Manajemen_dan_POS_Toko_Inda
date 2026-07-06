@@ -3,7 +3,7 @@
     <!-- Brand Logo -->
     <a href="<?= $main_url ?>dashboard.php" class="brand-link">
       <img src="<?= $main_url ?>asset/image/logoToko.png" alt="Logo Toko" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">Toko Inda POS</span>
+      <span class="brand-text font-weight-light">Toko Inda</span>
     </a>
 
     <!-- Sidebar -->
