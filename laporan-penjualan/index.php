@@ -9,7 +9,6 @@ if (!isset($_SESSION['ssLoginPOS'])) {
 
 require "../config/config.php";
 require "../config/functions.php";
-require "../module/mode-barang.php";
 
 $title = "Laporan Penjualan - Toko Inda POS";
 require "../template/header.php";

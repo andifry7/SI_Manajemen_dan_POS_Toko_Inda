@@ -144,7 +144,7 @@ $brgNum = count($barang);
           <div class="col-lg-6">
             <div class="card card-outline card-success">
               <div class="card-header text-info">
-                <h5>Omzet Penjualan</h5>
+                <h5 class="card-title">Omzet Penjualan</h5>
               </div>
               <div class="card-body text-primary">
                 <h2><span class="h4">Rp </span><?= omzet() ?></h2>
