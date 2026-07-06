@@ -145,4 +145,49 @@ function in_date($tgl) {
     return $tg . '-' . $bln . '-' . $thn;
 }
 
+function pembelian() {
+    if (userMenu() == 'pembelian') {
+        $result = 'active';
+    } else {
+        $result = null;
+    }
+    return $result;
+}
+
+function penjualan() {
+    if (userMenu() == 'penjualan') {
+        $result = 'active';
+    } else {
+        $result = null;
+    }
+    return $result;
+}
+
+function laporanBeli() {
+    if (userMenu() == 'laporan-pembelian') {
+        $result = 'active';
+    } else {
+        $result = null;
+    }
+    return $result;
+}
+
+function laporanJual() {
+    if (userMenu() == 'laporan-penjualan') {
+        $result = 'active';
+    } else {
+        $result = null;
+    }
+    return $result;
+}
+
+function laporanStock() {
+    if (userMenu() == 'laporan-stok') {
+        $result = 'active';
+    } else {
+        $result = null;
+    }
+    return $result;
+}
+
 ?>

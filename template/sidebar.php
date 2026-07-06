@@ -66,7 +66,7 @@
             <?php } ?>
             <li class="nav-header">Transaksi</li>
             <li class="nav-item">
-              <a href="<?= $main_url ?>pembelian/index.php" class="nav-link">
+              <a href="<?= $main_url ?>pembelian/index.php" class="nav-link <?= Pembelian() ?>">
                     <i class="nav-icon fas fa-shopping-basket text-sm"></i>
                     <p>
                         Pembelian
@@ -74,7 +74,7 @@
                 </a>
             </li>
             <li class="nav-item">
-              <a href="<?= $main_url ?>penjualan/index.php" class="nav-link">
+              <a href="<?= $main_url ?>penjualan/index.php" class="nav-link <?= Penjualan() ?>">
                     <i class="nav-icon fas fa-file-invoice text-sm"></i>
                     <p>
                         Penjualan
@@ -84,7 +84,7 @@
             </li>
             <li class="nav-header">Report</li>
             <li class="nav-item">
-                <a href="<?= $main_url ?>laporan-pembelian" class="nav-link">
+                <a href="<?= $main_url ?>laporan-pembelian" class="nav-link <?= laporanBeli() ?>">
                     <i class="nav-icon fas fa-chart-pie text-sm"></i>
                     <p>
                         Laporan Pembelian
@@ -92,7 +92,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="<?= $main_url ?>laporan-penjualan" class="nav-link">
+                <a href="<?= $main_url ?>laporan-penjualan" class="nav-link <?= laporanJual() ?>">
                     <i class="nav-icon fas fa-chart-line text-sm"></i>
                     <p>
                         Laporan Penjualan
@@ -100,7 +100,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="<?= $main_url ?>laporan-stok" class="nav-link <?= laporanStock() ?>">
                     <i class="nav-icon fas fa-warehouse text-sm"></i>
                     <p>
                         Laporan Stok
