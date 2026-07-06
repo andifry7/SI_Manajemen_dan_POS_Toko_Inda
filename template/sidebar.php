@@ -14,7 +14,7 @@
           <img src="<?= $main_url ?>asset/image/<?= userLogin()['foto'] ?>" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block"><?= 'Ahmad Andi Alfiansyah' ?></a>
+          <a href="#" class="d-block\"><?= userLogin()['fullname'] ?></a>
         </div>
       </div>
 
