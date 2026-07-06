@@ -32,7 +32,7 @@ $dataBeli = getData("SELECT * FROM tbl_jual_head WHERE tgl_jual BETWEEN '$tgl1' 
     <table>
         <thead>
             <tr>
-                <td colspan="5" style="height: 5px;">
+                <td colspan="6" style="height: 5px;">
                     <hr style="margin-bottom: 2px; margin-left: -5px; margin-top: 1px;", size="3", color="gray">
                 </td>
             </tr>
@@ -40,11 +40,12 @@ $dataBeli = getData("SELECT * FROM tbl_jual_head WHERE tgl_jual BETWEEN '$tgl1' 
                 <th>No</th>
                 <th style="width: 120px;">Tgl Penjualan</th>
                 <th style="width: 120px;">ID Penjualan</th>
-                <th style="width: 300px;">Customer</th>
+                <th style="width: 200px;">Customer</th>
                 <th>Total Penjualan</th>
+                <th style="width: 120px;">Keterangan</th>
             </tr>
             <tr>
-                <td colspan="5" style="height: 5px;">
+                <td colspan="6" style="height: 5px;">
                     <hr style="margin-bottom: 2px; margin-left: -5px; margin-top: 1px;", size="3", color="gray">
                 </td>
             </tr>
@@ -59,6 +60,7 @@ $dataBeli = getData("SELECT * FROM tbl_jual_head WHERE tgl_jual BETWEEN '$tgl1' 
                     <td align="center"><?= $data['no_jual'] ?></td>
                     <td align="center"><?= $data['customer'] ?></td>
                     <td align="center"><?= number_format($data['total'],0,',','.') ?></td>
+                    <td align="center"><?= $data['keterangan'] ?></td>
                 </tr>
             <?php
             }
@@ -66,7 +68,7 @@ $dataBeli = getData("SELECT * FROM tbl_jual_head WHERE tgl_jual BETWEEN '$tgl1' 
         </tbody>
         <tfoot>
             <tr>
-                <td colspan="5" style="height: 5px;">
+                <td colspan="6" style="height: 5px;">
                     <hr style="margin-bottom: 2px; margin-left: -5px; margin-top: 1px;", size="3", color="gray">
                 </td>
             </tr>

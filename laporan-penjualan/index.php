@@ -54,6 +54,7 @@ $penjualan = getData("SELECT * FROM tbl_jual_head");
                                 <th>Tgl Penjualan</th>
                                 <th>Customer</th>
                                 <th>Total Penjualan</th>
+                                <th>Keterangan</th>
                                 <th style="width: 10%;" class="text-center">Opsi</th>
                             </tr>
                         </thead>
@@ -67,6 +68,7 @@ $penjualan = getData("SELECT * FROM tbl_jual_head");
                                     <td><?= in_date($jual['tgl_jual']) ?></td>
                                     <td><?= $jual['customer'] ?></td>
                                     <td class="text-center"><?= number_format($jual['total'], 0, ',', '.') ?></td>
+                                    <td class="text-center"><?= $jual['keterangan'] ?></td>
                                     <td class="text-center"><a href="detail-penjualan.php?id=<?= $jual['no_jual'] ?>&tgl=<?= in_date($jual['tgl_jual']) ?>" class="btn btn-sm btn-info" title="rincian barang">Detail</a></td>
                                 </tr>
                             <?php
