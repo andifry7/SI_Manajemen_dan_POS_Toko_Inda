@@ -81,6 +81,13 @@
                     </p>
                 </a>
             </li>
+            <li class="nav-item">
+              <a href="<?= $main_url ?>stok-keluar/index.php" class="nav-link <?= stokKeluar() ?>">
+                <i class="nav-icon fas fa-sign-out-alt text-sm"></i>
+                    <p>
+                        Stok Keluar
+                    </p>
+                </a>
             </li>
             <li class="nav-header">Report</li>
             <li class="nav-item">

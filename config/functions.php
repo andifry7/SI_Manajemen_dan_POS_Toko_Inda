@@ -163,6 +163,15 @@ function penjualan() {
     return $result;
 }
 
+function stokKeluar() {
+    if (userMenu() == 'stok-keluar') {
+        $result = 'active';
+    } else {
+        $result = null;
+    }
+    return $result;
+}
+
 function laporanBeli() {
     if (userMenu() == 'laporan-pembelian') {
         $result = 'active';
