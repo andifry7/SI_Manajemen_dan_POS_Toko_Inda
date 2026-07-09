@@ -199,6 +199,15 @@ function laporanStock() {
     return $result;
 }
 
+function laporanStockKeluar() {
+    if (userMenu() == 'laporan-stok-keluar') {
+        $result = 'active';
+    } else {
+        $result = null;
+    }
+    return $result;
+}
+
 function omzet() {
     global $koneksi;
     

@@ -114,6 +114,14 @@
                     </p>
                 </a>
             </li>
+            <li class="nav-item">
+                <a href="<?= $main_url ?>laporan-stok-keluar" class="nav-link <?= laporanStockKeluar() ?>">
+                    <i class="nav-icon fab fa-uncharted text-sm"></i>
+                    <p>
+                        Laporan Stok Keluar
+                    </p>
+                </a>
+            </li>
             <?php 
             
             if (userLogin()['level'] == 1) {
