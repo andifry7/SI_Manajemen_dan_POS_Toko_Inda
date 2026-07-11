@@ -9,7 +9,7 @@
 
   <!-- Main Footer -->
   <footer class="main-footer">
-    <strong>Copyright &copy; 2026 <span class="text-info">Toko Inda</span></strong>
+    <strong>Copyright &copy; <?= date("Y"); ?> <span class="text-info">Toko Inda</span></strong>
     All rights reserved.
     <div class="float-right d-none d-sm-inline-block">
       <b>Version</b> 1.0
