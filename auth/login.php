@@ -92,7 +92,7 @@ if (isset($_POST['login'])) {
       </form>
 
       <p class="my-3 text-center">
-        <strong>Copyright &copy; 2026 <span class="text-info">Toko Inda</span></strong>
+        <strong>Copyright &copy; <?= date("Y"); ?> <span class="text-info">Toko Inda</span></strong>
       </p>
     </div>
     <!-- /.card-body -->
