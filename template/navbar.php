@@ -2,9 +2,9 @@
 <div class="wrapper">
 
     <!-- Preloader -->
-  <div class="preloader flex-column justify-content-center align-items-center">
-    <div class="overlay">
-        <i class="i fas fa-2x fa-spinner fa-spin"></i>
+  <div class="preloader d-flex justify-content-center align-items-center">
+    <div class="spinner-border text-primary" role="status" style="width:3rem;height:3rem;">
+        <span class="sr-only">Loading...</span>
     </div>
   </div>
   <!-- Navbar -->
