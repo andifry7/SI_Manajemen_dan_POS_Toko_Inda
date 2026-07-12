@@ -95,28 +95,25 @@ if (isset($_POST['simpan'])) {
                             <div class="form-group">
                                 <label for="kategori">Kategori Barang *</label>
                                 <select name="kategori" class="form-control" id="kategori" required>
+                                    <option value="">-- Pilih Kategori --</option>
+
                                     <?php
-                                        if ($msg != '') {
-                                            $kategori = ["Elektronik", "ATK", "Makanan", "Minuman", "Rokok", "Lainnya"];
-                                            foreach ($kategori as $ket) {
-                                                if ($barang['kategori'] == $ket) { ?>
-                                                    <option value="<?= $ket ?>" selected><?= $ket ?></option>
-                                                <?php } else { ?>
-                                                    <option value="<?= $ket ?>"><?= $ket ?></option>
-                                                <?php
-                                                }
-                                            }
-                                        } else { ?>
-                                        <option value="">-- Pilih Kategori --</option>
-                                        <option value="Elektronik">Elektronik</option>
-                                        <option value="ATK">ATK</option>
-                                        <option value="Makanan">Makanan</option>
-                                        <option value="Minuman">Minuman</option>
-                                        <option value="Rokok">Rokok</option>
-                                        <option value="Lainnya">Lainnya</option>
-                                    <?php
+                                    // Ambil semua kategori dari database
+                                    $queryKategori = mysqli_query($koneksi, "SELECT * FROM tbl_kategori ORDER BY nama ASC");
+
+                                    while ($dataKategori = mysqli_fetch_assoc($queryKategori)) {
+
+                                        // Saat edit barang
+                                        if ($msg != '' && $barang['kategori'] == $dataKategori['nama']) {
+                                            $selected = "selected";
+                                        } else {
+                                            $selected = "";
                                         }
                                     ?>
+                                        <option value="<?= $dataKategori['nama']; ?>" <?= $selected; ?>>
+                                            <?= $dataKategori['nama']; ?>
+                                        </option>
+                                    <?php } ?>
                                 </select>
                             </div>
                             <div class="form-group">

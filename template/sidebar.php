@@ -61,6 +61,12 @@
                         <p>Barang</p>
                     </a>
                 </li>  
+                <li class="nav-item">
+                    <a href="<?= $main_url ?>kategori" class="nav-link <?= menuKategori() ?>">
+                        <i class="far fa-circle nav-icon text-sm"></i>
+                        <p>Kategori</p>
+                    </a>
+                </li>  
             </ul>
             </li>
             <?php } ?>

@@ -129,8 +129,17 @@ function menuBarang() {
     return $result;
 }
 
+function menuKategori() {
+    if (userMenu() == 'kategori') {
+        $result = 'active';
+    } else {
+        $result = null;
+    }
+    return $result;
+}
+
 function menuMaster() {
-    if (userMenu() == 'supplier' || userMenu() == 'customer' || userMenu() == 'barang') {
+    if (userMenu() == 'supplier' || userMenu() == 'customer' || userMenu() == 'barang' || userMenu() == 'kategori') {
         $result = 'menu-is-opening menu-open';
     } else {
         $result = null;
