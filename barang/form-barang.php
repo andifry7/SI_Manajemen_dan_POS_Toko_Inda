@@ -119,27 +119,25 @@ if (isset($_POST['simpan'])) {
                             <div class="form-group">
                                 <label for="satuan">Satuan *</label>
                                 <select name="satuan" class="form-control" id="satuan" required>
-                                    <?php
-                                        if ($msg != '') {
-                                            $satuan = ["Piece", "Botol", "Kaleng", "Pouch", "Pack"];
-                                            foreach ($satuan as $sat) {
-                                                if ($barang['satuan'] == $sat) { ?>
-                                                    <option value="<?= $sat ?>" selected><?= $sat ?></option>
-                                                <?php } else { ?>
-                                                    <option value="<?= $sat ?>"><?= $sat ?></option>
-                                                <?php
-                                                }
-                                            }
-                                        } else { ?>
                                     <option value="">-- Pilih Satuan --</option>
-                                    <option value="Piece">Piece</option>
-                                    <option value="Botol">Botol</option>
-                                    <option value="Kaleng">Kaleng</option>
-                                    <option value="Pouch">Pouch</option>
-                                    <option value="Pack">Pack</option>
+
                                     <?php
+                                    // Ambil semua satuan dari database
+                                    $querySatuan = mysqli_query($koneksi, "SELECT * FROM tbl_satuan ORDER BY nama ASC");
+
+                                    while ($dataSatuan = mysqli_fetch_assoc($querySatuan)) {
+
+                                        // Saat edit barang
+                                        if ($msg != '' && $barang['satuan'] == $dataSatuan['nama']) {
+                                            $selected = "selected";
+                                        } else {
+                                            $selected = "";
                                         }
                                     ?>
+                                        <option value="<?= $dataSatuan['nama']; ?>" <?= $selected; ?>>
+                                            <?= $dataSatuan['nama']; ?>
+                                        </option>
+                                    <?php } ?>
                                 </select>
                             </div>
                             <div class="form-group">

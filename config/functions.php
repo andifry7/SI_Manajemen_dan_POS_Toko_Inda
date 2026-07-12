@@ -138,8 +138,17 @@ function menuKategori() {
     return $result;
 }
 
+function menuSatuan() {
+    if (userMenu() == 'satuan') {
+        $result = 'active';
+    } else {
+        $result = null;
+    }
+    return $result;
+}
+
 function menuMaster() {
-    if (userMenu() == 'supplier' || userMenu() == 'customer' || userMenu() == 'barang' || userMenu() == 'kategori') {
+    if (userMenu() == 'supplier' || userMenu() == 'customer' || userMenu() == 'barang' || userMenu() == 'kategori' || userMenu() == 'satuan') {
         $result = 'menu-is-opening menu-open';
     } else {
         $result = null;

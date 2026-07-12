@@ -67,6 +67,12 @@
                         <p>Kategori</p>
                     </a>
                 </li>  
+                <li class="nav-item">
+                    <a href="<?= $main_url ?>satuan" class="nav-link <?= menuSatuan() ?>">
+                        <i class="far fa-circle nav-icon text-sm"></i>
+                        <p>Satuan</p>
+                    </a>
+                </li>  
             </ul>
             </li>
             <?php } ?>
