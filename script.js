@@ -1,16 +1,25 @@
 function progress() {
-  let progress = document.querySelector(".progress");
-  let step = 16;
-  let loading = setInterval(move, 50);
+  const bar = document.getElementById("loadingBar");
+  let width = 0;
 
-  function move() {
-    if (step == 400) {
-      clearInterval(loading);
-      document.location = "auth/login.php";
+  const loading = setInterval(() => {
+    if (width < 80) {
+      width += 2;
+    } else if (width < 95) {
+      width += 1;
     } else {
-      step += 4;
-      progress.style.width = step + "px";
+      width += 0.2;
     }
-  }
+
+    bar.style.width = width + "%";
+
+    if (width >= 100) {
+      clearInterval(loading);
+      setTimeout(() => {
+        window.location.href = "auth/login.php";
+      }, 300);
+    }
+  }, 30);
 }
+
 progress();

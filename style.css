@@ -1,36 +1,30 @@
 body {
+  margin: 0;
   background-color: #151515;
-  font-family: "Century new", Courier, monospace;
+  font-family: "Century Gothic", sans-serif;
 }
 
 .loading {
   position: absolute;
-  top: 40%;
+  top: 45%;
   left: 50%;
   transform: translate(-50%, -50%);
+  width: 420px;
 }
 
 .title {
-  color: #999;
-  font-style: italic;
-  font-size: 30px;
-  font-weight: 400;
+  color: #fff;
+  font-size: 28px;
   text-align: center;
-  margin-bottom: 50px;
-}
-
-.progress-bar {
-  width: 406px;
-  height: 10px;
-  background: #111;
-  border-radius: 7px;
-  pading: 3px;
-  box-sizing: border-box;
+  margin-bottom: 20px;
 }
 
 .progress {
-  width: 10px;
-  height: 5px;
-  background: white;
-  border-radius: 7px;
+  height: 12px !important;
+  border-radius: 20px;
+  background-color: #343a40;
+}
+
+.progress-bar {
+  border-radius: 20px;
 }
