@@ -29,8 +29,8 @@
 </div>
 
 <script src="script.js"></script>
-<script src="asset/AdminLTE-3.2.0/plugins/jquery/jquery.min.js"></script>
-<script src="asset/AdminLTE-3.2.0/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="asset/AdminLTE-3.2.0/dist/js/adminlte.min.js"></script>
+<script src="<?= $main_url ?>asset/AdminLTE-3.2.0/plugins/jquery/jquery.min.js"></script>
+<script src="<?= $main_url ?>asset/AdminLTE-3.2.0/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="<?= $main_url ?>asset/AdminLTE-3.2.0/dist/js/adminlte.min.js"></script>
 </body>
 </html>
