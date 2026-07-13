@@ -61,18 +61,38 @@ if (isset($_POST['addbrg'])) {
 
 // jika tombol simpan ditekan
 if (isset($_POST['simpan'])) {
+
     $nota = $_POST['nojual'];
-    if (simpan($_POST)) {
-        echo "<script>
-                alert('Data penjualan berhasil disimpan');
-                window.onload = function() {
-                    let win = window.open('../report/r-struk.php?nota=$nota', 'Struk Belanja', 'width=260, height=400, left=100, top=100', '_blank');
-                    if (win) {
-                        win.focus();
-                        window.location = 'index.php';
-                    }
-                };
-        </script>";
+
+    // Cek apakah ada barang
+    $cekDetail = getData("SELECT * FROM tbl_jual_detail WHERE no_jual = '$nota'");
+
+    if (count($cekDetail) == 0) {
+        $error = "Tambahkan minimal satu barang terlebih dahulu.";
+    }
+    // Cek apakah bayar kosong
+    elseif ($_POST['bayar'] == '' || $_POST['bayar'] <= 0) {
+        $error = "Masukkan nominal pembayaran terlebih dahulu.";
+    }
+    // Cek apakah uang bayar kurang
+    elseif ($_POST['bayar'] < $_POST['total']) {
+        $error = "Nominal pembayaran kurang dari total belanja.";
+    }
+    else {
+
+        if (simpan($_POST)) {
+            echo "<script>
+                    alert('Data penjualan berhasil disimpan');
+                    window.onload = function() {
+                        let win = window.open('../report/r-struk.php?nota=$nota', 'Struk Belanja', 'width=260,height=400,left=100,top=100');
+                        if (win) {
+                            win.focus();
+                            window.location='index.php';
+                        }
+                    };
+                </script>";
+        }
+
     }
 }
 
@@ -257,6 +277,15 @@ $nojual = generateNo();
                         </div>
                     </div>
                     <div class="col-lg-4 p-2">
+                        <?php if (isset($error)) : ?>
+                        <div class="alert alert-warning alert-dismissible fade show">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <?= $error ?>
+                            <button type="button" class="close" data-dismiss="alert">
+                                <span>&times;</span>
+                            </button>
+                        </div>
+                        <?php endif; ?>
                         <button type="submit" name="simpan" id="simpan" class="btn btn-primary btn-sm btn-block"><i class="fa fa-save"></i> Simpan</button>
                     </div>
                 </div>
