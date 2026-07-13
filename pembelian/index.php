@@ -48,16 +48,28 @@ if (isset($_POST['addbrg'])) {
     }
 }
 
+$noBeli = generateNo();
+
 if (isset($_POST['simpan'])) {
-    if (simpan($_POST)) {
-        echo "<script>
+
+    $noBeli = $_POST['nobeli'];
+
+    $cekDetail = getData("SELECT * FROM tbl_beli_detail WHERE no_beli = '$noBeli'");
+
+    if (count($cekDetail) == 0) {
+        $error = "Tambahkan minimal satu barang terlebih dahulu sebelum menyimpan transaksi.";
+    } else {
+
+        if (simpan($_POST)) {
+            echo "<script>
                 alert('Data pembelian berhasil disimpan');
-                document.location = 'index.php';
-        </script>";
+                document.location='index.php';
+            </script>";
+        }
+
     }
 }
 
-$noBeli = generateNo();
 
 ?>
 
@@ -231,6 +243,19 @@ $noBeli = generateNo();
                         </div>
                     </div>
                     <div class="col-lg-6 p-2">
+                        <?php
+                        $cekDetail = getData("SELECT * FROM tbl_beli_detail WHERE no_beli = '$noBeli'");
+                        $adaBarang = count($cekDetail) > 0;
+                        ?>
+                        <?php if (isset($error)) : ?>
+                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                <?= $error; ?>
+                                <button type="button" class="close" data-dismiss="alert">
+                                    <span>&times;</span>
+                                </button>
+                            </div>
+                        <?php endif; ?>
                         <button type="submit" name="simpan" id="simpan" class="btn btn-primary btn-sm btn-block"><i class="fa fa-save"></i> Simpan</button>
                     </div>
                 </div>
