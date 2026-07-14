@@ -87,11 +87,64 @@ if (isset($_POST['simpan'])) {
                         <textarea name="address" id="address" cols="" row="3" class="form-control" placeholder="Masukkan alamat pengguna" required></textarea>
                       </div>
                     </div>
-                    <div class="col-lg-4 text-center">
-                      <img src="<?= $main_url ?>asset/image/default.png" alt="Default User" class="profile-user-img img-circle mb-3">
-                      <input type="file" class="form-control" name="image">
-                      <span class="text-sm">Type file gambar JPG | PNG | GIF</span><br>
-                      <span class="text-sm">Width = Height</span>
+                    <div class="col-lg-4">
+                        <div class="card shadow-sm">
+                            <div class="card-header bg-primary">
+                                <h3 class="card-title">
+                                    <i class="fas fa-image"></i> Foto Pengguna
+                                </h3>
+                            </div>
+
+                            <div class="card-body text-center">
+
+                                <img
+                                    src="<?= $main_url ?>asset/image/default.png"
+                                    id="previewImage"
+                                    class="img-circle elevation-2 mb-3"
+                                    style="width:180px;height:180px;object-fit:cover;border:4px solid #dee2e6;"
+                                    alt="Preview">
+
+                                <div class="custom-file mb-3">
+                                    <input
+                                        type="file"
+                                        class="custom-file-input"
+                                        id="image"
+                                        name="image"
+                                        accept=".jpg,.jpeg,.png,.gif">
+
+                                    <label class="custom-file-label text-left" for="image">
+                                        Pilih gambar...
+                                    </label>
+                                </div>
+
+                                <button
+                                    type="button"
+                                    class="btn btn-outline-danger btn-sm"
+                                    id="resetImage">
+
+                                    <i class="fas fa-trash"></i>
+                                    Hapus Gambar
+                                </button>
+
+                                <hr>
+
+                                <small class="text-muted d-block">
+                                    Format yang didukung :
+                                </small>
+
+                                <span class="badge badge-success">JPG</span>
+                                <span class="badge badge-info">PNG</span>
+                                <span class="badge badge-warning">GIF</span>
+
+                                <br><br>
+
+                                <small class="text-muted">
+                                    Disarankan gambar berbentuk persegi
+                                    (contoh 500 x 500 px)
+                                </small>
+
+                            </div>
+                        </div>
                     </div>
                     </div>
                 </div>
@@ -100,6 +153,68 @@ if (isset($_POST['simpan'])) {
         </div>
       </section>
 
+<style>
+  <?php include 'style.css'; ?>
+</style>
+
+<script>
+
+const imageInput = document.getElementById("image");
+const preview = document.getElementById("previewImage");
+const resetBtn = document.getElementById("resetImage");
+
+const defaultImage = "<?= $main_url ?>asset/image/default.png";
+
+imageInput.addEventListener("change", function(){
+
+    const file = this.files[0];
+
+    if(!file){
+        preview.src = defaultImage;
+        return;
+    }
+
+    const extension = file.name.split('.').pop().toLowerCase();
+
+    const allow = ['jpg','jpeg','png','gif'];
+
+    if(!allow.includes(extension)){
+
+        alert("Format gambar harus JPG, JPEG, PNG, atau GIF");
+
+        this.value = "";
+
+        preview.src = defaultImage;
+
+        document.querySelector(".custom-file-label").innerHTML = "Pilih gambar...";
+
+        return;
+    }
+
+    document.querySelector(".custom-file-label").innerHTML = file.name;
+
+    const reader = new FileReader();
+
+    reader.onload = function(e){
+        preview.src = e.target.result;
+    }
+
+    reader.readAsDataURL(file);
+
+});
+
+
+resetBtn.addEventListener("click",function(){
+
+    imageInput.value="";
+
+    preview.src=defaultImage;
+
+    document.querySelector(".custom-file-label").innerHTML="Pilih gambar...";
+
+});
+
+</script>
 
 <?php
 
