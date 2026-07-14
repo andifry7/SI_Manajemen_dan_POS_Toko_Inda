@@ -1,0 +1,13 @@
+.custom-file-label {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+#previewImage {
+  transition: 0.3s;
+}
+
+#previewImage:hover {
+  transform: scale(1.03);
+}

@@ -153,11 +153,81 @@ if (isset($_POST['simpan'])) {
                                 <input type="number" name="stock_minimal" class="form-control" id="stock_minimal" value="<?= $msg != '' ? $barang['stock_minimal'] : null ?>" placeholder="0" autocomplete="off" required>
                             </div>
                         </div>
-                        <div class="col-lg-4 mb-3 text-center px-3">
-                            <input type="hidden" name="oldImg" value="<?= $msg != '' ? $barang['gambar'] : null ?>"></input>
-                            <img src="<?= $main_url ?>asset/image/<?= $msg != '' ? $barang['gambar'] : 'default-brg.jpg' ?>" class="profile-user-img mb-3 mt-4" alt="">
-                            <input type="file" class="form-control" name="image">
-                            <span class="text-sm">Type file gambar JPG | PNG | GIF</span>
+                        <div class="col-lg-4">
+
+                            <input type="hidden"
+                                name="oldImg"
+                                value="<?= $msg != '' ? $barang['gambar'] : '' ?>">
+
+                            <div class="card shadow-sm">
+
+                                <div class="card-header bg-info">
+                                    <h3 class="card-title">
+                                        <i class="fas fa-box-open"></i>
+                                        Gambar Barang
+                                    </h3>
+                                </div>
+
+                                <div class="card-body text-center">
+
+                                    <img
+                                        id="previewImage"
+                                        src="<?= $main_url ?>asset/image/<?= $msg != '' ? $barang['gambar'] : 'default-brg.jpg' ?>"
+                                        class="elevation-2 mb-3"
+                                        style="
+                                            width:220px;
+                                            height:220px;
+                                            object-fit:cover;
+                                            border-radius:15px;
+                                            border:4px solid #dee2e6;
+                                        "
+                                        alt="Preview Barang">
+
+                                    <div class="custom-file mb-3">
+
+                                        <input
+                                            type="file"
+                                            id="image"
+                                            name="image"
+                                            class="custom-file-input"
+                                            accept=".jpg,.jpeg,.png,.gif">
+
+                                        <label class="custom-file-label text-left" for="image">
+                                            Pilih gambar barang...
+                                        </label>
+
+                                    </div>
+
+                                    <button
+                                        type="button"
+                                        id="resetImage"
+                                        class="btn btn-outline-danger btn-sm">
+
+                                        <i class="fas fa-trash"></i>
+                                        Reset Gambar
+
+                                    </button>
+
+                                    <hr>
+
+                                    <small class="text-muted d-block mb-2">
+                                        Format yang didukung
+                                    </small>
+
+                                    <span class="badge badge-success">JPG</span>
+                                    <span class="badge badge-info">PNG</span>
+                                    <span class="badge badge-warning">GIF</span>
+
+                                    <br><br>
+
+                                    <small class="text-muted">
+                                        Disarankan ukuran 500 × 500 px
+                                    </small>
+
+                                </div>
+
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -165,6 +235,68 @@ if (isset($_POST['simpan'])) {
             </div>
         </div>
     </section>
+
+<style>
+  <?php include 'style.css'; ?>
+</style>
+
+<script>
+
+const imageInput = document.getElementById("image");
+const preview = document.getElementById("previewImage");
+const resetBtn = document.getElementById("resetImage");
+
+const defaultImage = "<?= $main_url ?>asset/image/<?= $msg != '' ? $barang['gambar'] : 'default-brg.jpg' ?>";
+
+imageInput.addEventListener("change", function(){
+
+    const file = this.files[0];
+
+    if(!file){
+        preview.src = defaultImage;
+        return;
+    }
+
+    const ext = file.name.split('.').pop().toLowerCase();
+
+    const allow = ['jpg','jpeg','png','gif'];
+
+    if(!allow.includes(ext)){
+
+        alert("Format gambar harus JPG, JPEG, PNG, atau GIF");
+
+        this.value = "";
+
+        preview.src = defaultImage;
+
+        document.querySelector(".custom-file-label").innerHTML = "Pilih gambar barang...";
+
+        return;
+    }
+
+    document.querySelector(".custom-file-label").innerHTML = file.name;
+
+    const reader = new FileReader();
+
+    reader.onload = function(e){
+        preview.src = e.target.result;
+    }
+
+    reader.readAsDataURL(file);
+
+});
+
+resetBtn.addEventListener("click",function(){
+
+    imageInput.value = "";
+
+    preview.src = defaultImage;
+
+    document.querySelector(".custom-file-label").innerHTML = "Pilih gambar barang...";
+
+});
+
+</script>
 
 <?php
 
