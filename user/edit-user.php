@@ -87,12 +87,71 @@ if (isset($_POST['koreksi'])) {
                         <textarea name="address" id="address" cols="" row="3" class="form-control" placeholder="Masukkan alamat pengguna" required><?= $user['address'] ?></textarea>
                       </div>
                     </div>
-                    <div class="col-lg-4 text-center">
-                      <input type="hidden" name="oldImg" value="<?= $user['foto'] ?>">
-                      <img src="<?= $main_url ?>asset/image/<?= $user['foto'] ?>" alt="Default User" class="profile-user-img img-circle mb-3">
-                      <input type="file" class="form-control" name="image">
-                      <span class="text-sm">Type file gambar JPG | PNG | GIF</span><br>
-                      <span class="text-sm">Width = Height</span>
+                    <div class="col-lg-4">
+
+                        <input type="hidden" name="oldImg" value="<?= $user['foto'] ?>">
+
+                        <div class="card shadow-sm">
+                            <div class="card-header bg-warning">
+                                <h3 class="card-title">
+                                    <i class="fas fa-user-edit"></i>
+                                    Foto Pengguna
+                                </h3>
+                            </div>
+
+                            <div class="card-body text-center">
+
+                                <img
+                                    src="<?= $main_url ?>asset/image/<?= $user['foto'] ?>"
+                                    id="previewImage"
+                                    class="img-circle elevation-2 mb-3"
+                                    style="width:180px;height:180px;object-fit:cover;border:4px solid #dee2e6;"
+                                    alt="Preview">
+
+                                <div class="custom-file mb-3">
+
+                                    <input
+                                        type="file"
+                                        class="custom-file-input"
+                                        id="image"
+                                        name="image"
+                                        accept=".jpg,.jpeg,.png,.gif">
+
+                                    <label class="custom-file-label text-left" for="image">
+                                        Pilih gambar baru...
+                                    </label>
+
+                                </div>
+
+                                <button
+                                    type="button"
+                                    id="resetImage"
+                                    class="btn btn-outline-danger btn-sm">
+
+                                    <i class="fas fa-trash"></i>
+                                    Batalkan Ganti Foto
+
+                                </button>
+
+                                <hr>
+
+                                <small class="text-muted d-block">
+                                    Foto saat ini
+                                </small>
+
+                                <span class="badge badge-success">JPG</span>
+                                <span class="badge badge-info">PNG</span>
+                                <span class="badge badge-warning">GIF</span>
+
+                                <br><br>
+
+                                <small class="text-muted">
+                                    Kosongkan jika tidak ingin mengganti foto.
+                                </small>
+
+                            </div>
+                        </div>
+
                     </div>
                     </div>
                 </div>
@@ -101,6 +160,68 @@ if (isset($_POST['koreksi'])) {
         </div>
       </section>
 
+<style>
+  <?php include 'style.css'; ?>
+</style>
+
+<script>
+
+const imageInput = document.getElementById("image");
+const preview = document.getElementById("previewImage");
+const resetBtn = document.getElementById("resetImage");
+
+const oldImage = "<?= $main_url ?>asset/image/<?= $user['foto'] ?>";
+
+imageInput.addEventListener("change", function(){
+
+    const file = this.files[0];
+
+    if(!file){
+        preview.src = oldImage;
+        return;
+    }
+
+    const ext = file.name.split('.').pop().toLowerCase();
+
+    const allow = ['jpg','jpeg','png','gif'];
+
+    if(!allow.includes(ext)){
+
+        alert("Format gambar harus JPG, JPEG, PNG, atau GIF");
+
+        this.value = "";
+
+        preview.src = oldImage;
+
+        document.querySelector(".custom-file-label").innerHTML = "Pilih gambar baru...";
+
+        return;
+    }
+
+    document.querySelector(".custom-file-label").innerHTML = file.name;
+
+    const reader = new FileReader();
+
+    reader.onload = function(e){
+        preview.src = e.target.result;
+    }
+
+    reader.readAsDataURL(file);
+
+});
+
+
+resetBtn.addEventListener("click", function(){
+
+    imageInput.value = "";
+
+    preview.src = oldImage;
+
+    document.querySelector(".custom-file-label").innerHTML = "Pilih gambar baru...";
+
+});
+
+</script>
 
 <?php
 
