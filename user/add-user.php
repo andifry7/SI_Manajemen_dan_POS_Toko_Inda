@@ -180,7 +180,12 @@ imageInput.addEventListener("change", function(){
 
     if(!allow.includes(extension)){
 
-        alert("Format gambar harus JPG, JPEG, PNG, atau GIF");
+        Swal.fire({
+            icon: 'warning',
+            title: 'Format Tidak Didukung',
+            text: 'Format gambar harus JPG, JPEG, PNG, atau GIF.',
+            confirmButtonColor: '#f39c12'
+        });
 
         this.value = "";
 

@@ -23,11 +23,10 @@ $user = getData($sqlEdit)[0];
 $level = $user['level'];
 
 if (isset($_POST['koreksi'])) {
-    if (update($_POST)) {
-        echo '<script>
-            alert("Data user berhasil di-update..");
-            document.location.href = "data-user.php";
-            </script>';
+    if (update($_POST) > 0) {
+        $_SESSION['success'] = "Data pengguna berhasil di-update.";
+    } else {
+        $_SESSION['error'] = "Data pengguna gagal di-update.";
     }
 }
 
@@ -187,7 +186,12 @@ imageInput.addEventListener("change", function(){
 
     if(!allow.includes(ext)){
 
-        alert("Format gambar harus JPG, JPEG, PNG, atau GIF");
+        Swal.fire({
+            icon: 'warning',
+            title: 'Format Tidak Didukung',
+            text: 'Format gambar harus JPG, JPEG, PNG, atau GIF.',
+            confirmButtonColor: '#f39c12'
+        });
 
         this.value = "";
 
@@ -223,8 +227,36 @@ resetBtn.addEventListener("click", function(){
 
 </script>
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <?php
 
 require "../template/footer.php";
 
 ?>
+
+<?php if (isset($_SESSION['success'])) : ?>
+<script>
+Swal.fire({
+    icon: 'success',
+    title: 'Berhasil!',
+    text: '<?= $_SESSION['success']; ?>',
+    confirmButtonColor: '#28a745',
+    confirmButtonText: 'OK'
+});
+</script>
+<?php unset($_SESSION['success']); ?>
+<?php endif; ?>
+
+<?php if (isset($_SESSION['error'])) : ?>
+<script>
+Swal.fire({
+    icon: 'error',
+    title: 'Gagal!',
+    text: '<?= $_SESSION['error']; ?>',
+    confirmButtonColor: '#dc3545',
+    confirmButtonText: 'OK'
+});
+</script>
+<?php unset($_SESSION['error']); ?>
+<?php endif; ?>
