@@ -17,11 +17,11 @@ require "../template/navbar.php";
 require "../template/sidebar.php";
 
 if (isset($_POST['simpan'])) {
-  if (insert($_POST) > 0) {
-    echo '<script>
-            alert("Pengguna baru berhasil diregistrasi...");
-          </script>';
-  }
+    if (insert($_POST) > 0) {
+        $_SESSION['success'] = "Pengguna baru berhasil diregistrasi...";
+    } else {
+        $_SESSION['error'] = "Pengguna gagal diregistrasi!";
+    }
 }
 
 ?>
@@ -216,8 +216,36 @@ resetBtn.addEventListener("click",function(){
 
 </script>
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <?php
 
 require "../template/footer.php";
 
 ?>
+
+<?php if (isset($_SESSION['success'])) : ?>
+<script>
+Swal.fire({
+    icon: 'success',
+    title: 'Berhasil!',
+    text: '<?= $_SESSION['success']; ?>',
+    confirmButtonColor: '#28a745',
+    confirmButtonText: 'OK'
+});
+</script>
+<?php unset($_SESSION['success']); ?>
+<?php endif; ?>
+
+<?php if (isset($_SESSION['error'])) : ?>
+<script>
+Swal.fire({
+    icon: 'error',
+    title: 'Gagal!',
+    text: '<?= $_SESSION['error']; ?>',
+    confirmButtonColor: '#dc3545',
+    confirmButtonText: 'OK'
+});
+</script>
+<?php unset($_SESSION['error']); ?>
+<?php endif; ?>
