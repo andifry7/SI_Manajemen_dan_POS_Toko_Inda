@@ -81,7 +81,10 @@ require "../template/sidebar.php";
                                     </td>
                                     <td>
                                         <a href="edit-user.php?id=<?= $user['userid'] ?>" class="btn btn-warning btn-sm" title="edit user"><i class="fas fa-user-edit"></i></a>
-                                        <a href="del-user.php?id=<?= $user['userid'] ?> &foto<?= $user['foto'] ?>" class="btn btn-danger btn-sm" title="hapus user"><i class="fas fa-user-times"></i></a>
+                                        <button type="button" class="btn btn-danger btn-sm" title="hapus user"
+                                            onclick="hapusUser('<?= $user['userid'] ?>', '<?= $user['foto'] ?>')">
+                                            <i class="fas fa-user-times"></i>
+                                        </button>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
@@ -91,6 +94,45 @@ require "../template/sidebar.php";
             </div>
         </div>
     </section>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+function hapusUser(id, foto) {
+    Swal.fire({
+        title: 'Apakah Anda yakin?',
+        text: "Data pengguna ini akan dihapus permanen dan tidak dapat dikembalikan!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#dc3545',
+        cancelButtonColor: '#6c757d',
+        confirmButtonText: 'Ya, hapus!',
+        cancelButtonText: 'Batal'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            window.location.href = 'del-user.php?id=' + encodeURIComponent(id) + '&foto=' + encodeURIComponent(foto);
+        }
+    });
+}
+
+<?php if (isset($_GET['status'])): ?>
+    <?php if ($_GET['status'] === 'success'): ?>
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil!',
+            text: 'Pengguna berhasil dihapus.',
+            timer: 2000,
+            showConfirmButton: false
+        });
+    <?php elseif ($_GET['status'] === 'error'): ?>
+        Swal.fire({
+            icon: 'error',
+            title: 'Gagal!',
+            text: 'Pengguna gagal dihapus.'
+        });
+    <?php endif; ?>
+<?php endif; ?>
+</script>
 
 <?php 
 
