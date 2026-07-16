@@ -49,6 +49,7 @@ $stokBrg = getData("SELECT * FROM tbl_barang");
                         <thead>
                             <tr>
                                 <th>No</th>
+                                <th>ID Barang</th>
                                 <th>Kode Barang</th>
                                 <th>Nama Barang</th>
                                 <th>Satuan</th>
@@ -64,6 +65,7 @@ $stokBrg = getData("SELECT * FROM tbl_barang");
                                 <tr>
                                     <td><?= $no++ ?></td>
                                     <td><?= $stok['id_barang'] ?></td>
+                                    <td><?= $stok['barcode'] ?></td>
                                     <td><?= $stok['nama_barang'] ?></td>
                                     <td><?= $stok['satuan'] ?></td>
                                     <td class="text-center"><?= $stok['stock'] ?></td>
