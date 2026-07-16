@@ -110,13 +110,10 @@ if ($msg == 'added') {
                                     <td> <?= $brg['keterangan'] ?> </td>
                                     <td> <?= $brg['tgl_keluar'] ?> </td>
                                     <td class="text-center">
-                                        <a href="?id=<?= $brg['id_barang'] ?>&msg=deleted" class="btn btn-danger btn-sm" title="hapus stok keluar" onclick="return confirm('Anda yakin akan menghapus ini?')"><i class="fas fa-trash"></i></a>
+                                        <a href="?id=<?= $brg['id'] ?>&msg=deleted" class="btn btn-danger btn-sm" title="hapus stok keluar" onclick="return confirm('Anda yakin akan menghapus ini?')"><i class="fas fa-trash"></i></a>
                                     </td>
                                 </tr>
-                            <?php
-
-                            }
-                            ?>
+                            <?php } ?>
                         </tbody>
                     </table>
                 </div>
