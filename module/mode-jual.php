@@ -22,37 +22,47 @@ function insert($data) {
     $kode = mysqli_real_escape_string($koneksi, $data['barcode']);
     $nama = mysqli_real_escape_string($koneksi, $data['namaBrg']);
     $kategori = mysqli_real_escape_string($koneksi, $data['kategori']);
-    $qty = mysqli_real_escape_string($koneksi, $data['qty']);
-    $harga = mysqli_real_escape_string($koneksi, $data['harga']);
-    $jmlHarga = mysqli_real_escape_string($koneksi, $data['jmlHarga']);
-    $stok = mysqli_real_escape_string($koneksi, $data['stok']);
+    $qty = (int) mysqli_real_escape_string($koneksi, $data['qty']);
+    $harga = (float) mysqli_real_escape_string($koneksi, $data['harga']);
+    $jmlHarga = (float) mysqli_real_escape_string($koneksi, $data['jmlHarga']);
 
-
-    // cek barang sudah di-input atau belum
-    $cekbrg = mysqli_query($koneksi, "SELECT * FROM tbl_jual_detail WHERE no_jual = '$no' AND barcode = '$kode'");
-    if (mysqli_num_rows($cekbrg)) {
-        echo "<script>
-                alert('Barang sudah ada di daftar penjualan, anda harus menghapusnya terlebih dahulu jika ingin mengubah jumlah barang');
-        </script>";
-        return false;
-    }
-
-    // qty barang tidak boleh kosong
-    if (empty($qty)) {
+    if (empty($qty) || $qty <= 0) {
         echo "<script>
                 alert('Jumlah barang tidak boleh kosong');
         </script>";
         return false;
-    } elseif ($qty > $stok) {
+    }
+
+    // ambil stok terkini langsung dari tbl_barang (bukan dari field form yang bisa basi)
+    $cekStok = mysqli_query($koneksi, "SELECT stock FROM tbl_barang WHERE barcode = '$kode'");
+    $dataStok = mysqli_fetch_assoc($cekStok);
+    $stokSaatIni = $dataStok ? (int) $dataStok['stock'] : 0;
+
+    if ($qty > $stokSaatIni) {
         echo "<script>
                 alert('Stok barang tidak mencukupi, silahkan kurangi jumlah barang yang akan dijual');
         </script>";
         return false;
+    }
+
+    // cek barang sudah di-input atau belum
+    $cekbrg = mysqli_query($koneksi, "SELECT * FROM tbl_jual_detail WHERE no_jual = '$no' AND barcode = '$kode'");
+
+    if ($cekbrg && mysqli_num_rows($cekbrg)) {
+        // barang sudah ada di daftar -> tambahkan qty & total harga ke baris yang sudah ada
+        $existing = mysqli_fetch_assoc($cekbrg);
+        $newQty = $existing['qty'] + $qty;
+        $newJmlHarga = $existing['jml_harga'] + $jmlHarga;
+
+        $sqlUpdate = "UPDATE tbl_jual_detail SET qty = '$newQty', jml_harga = '$newJmlHarga' WHERE no_jual = '$no' AND barcode = '$kode'";
+        mysqli_query($koneksi, $sqlUpdate);
     } else {
-        $sqlJual = "INSERT INTO tbl_jual_detail VALUES (null, '$no', '$tgl','$kode', '$nama', '$kategori', '$qty', '$harga', '$jmlHarga')";
+        // barang belum ada -> insert baris baru seperti biasa
+        $sqlJual = "INSERT INTO tbl_jual_detail VALUES (null, '$no', '$tgl', '$kode', '$nama', '$kategori', '$qty', '$harga', '$jmlHarga')";
         mysqli_query($koneksi, $sqlJual);
     }
-        
+
+    // stock dikurangi sebesar qty yang baru ditambahkan saja
     mysqli_query($koneksi, "UPDATE tbl_barang SET stock = stock - $qty WHERE barcode = '$kode'");
 
     return mysqli_affected_rows($koneksi);
