@@ -32,28 +32,31 @@ function insert($data) {
     $kode = mysqli_real_escape_string($koneksi, $data['kodeBrg']);
     $nama = mysqli_real_escape_string($koneksi, $data['namaBrg']);
     $kategori = mysqli_real_escape_string($koneksi, $data['kategori']);
-    $qty = mysqli_real_escape_string($koneksi, $data['qty']);
-    $harga = mysqli_real_escape_string($koneksi, $data['harga']);
-    $jmlHarga = mysqli_real_escape_string($koneksi, $data['jmlHarga']);
+    $qty = (int) mysqli_real_escape_string($koneksi, $data['qty']);
+    $harga = (float) mysqli_real_escape_string($koneksi, $data['harga']);
+    $jmlHarga = (float) mysqli_real_escape_string($koneksi, $data['jmlHarga']);
 
-    $cekbrg = mysqli_query($koneksi, "SELECT * FROM tbl_beli_detail WHERE no_beli = '$no' AND kode_brg = '$kode'");
-    if (mysqli_num_rows($cekbrg)) {
-        echo "<script>
-                alert('Barang sudah ada di daftar pembelian, anda harus menghapusnya terlebih dahulu jika ingin mengubah jumlah barang');
-        </script>";
-        return false;
-    }
-
-    if (empty($qty)) {
+    if (empty($qty) || $qty <= 0) {
         echo "<script>
                 alert('Jumlah barang tidak boleh kosong');
         </script>";
         return false;
+    }
+
+    $cekbrg = mysqli_query($koneksi, "SELECT * FROM tbl_beli_detail WHERE no_beli = '$no' AND kode_brg = '$kode'");
+
+    if ($cekbrg && mysqli_num_rows($cekbrg)) {
+        $existing = mysqli_fetch_assoc($cekbrg);
+        $newQty = $existing['qty'] + $qty;
+        $newJmlHarga = $existing['jml_harga'] + $jmlHarga;
+
+        $sqlUpdate = "UPDATE tbl_beli_detail SET qty = '$newQty', jml_harga = '$newJmlHarga' WHERE no_beli = '$no' AND kode_brg = '$kode'";
+        mysqli_query($koneksi, $sqlUpdate);
     } else {
-        $sqlbeli = "INSERT INTO tbl_beli_detail VALUES (null, '$no', '$tgl','$kode', '$nama', '$kategori', '$qty', '$harga', '$jmlHarga')";
+        $sqlbeli = "INSERT INTO tbl_beli_detail VALUES (null, '$no', '$tgl', '$kode', '$nama', '$kategori', '$qty', '$harga', '$jmlHarga')";
         mysqli_query($koneksi, $sqlbeli);
     }
-        
+
     mysqli_query($koneksi, "UPDATE tbl_barang SET stock = stock + $qty WHERE id_barang = '$kode'");
 
     return mysqli_affected_rows($koneksi);
