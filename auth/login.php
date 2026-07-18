@@ -54,7 +54,7 @@ if (isset($_POST['login'])) {
   <!-- Theme style -->
   <link rel="stylesheet" href="<?= $main_url ?>asset/AdminLTE-3.2.0/dist/css/adminlte.min.css">
   <!-- Favicon -->
-  <link rel="shortcut icon" href="<?= $main_url ?>asset/image/cart.png" type="image/x-icon">
+  <link rel="shortcut icon" href="<?= $main_url ?>asset/image/logoToko.png" type="image/x-icon">
   <!-- Custom CSS -->
   <link rel="stylesheet" href="style.css">
 </head>

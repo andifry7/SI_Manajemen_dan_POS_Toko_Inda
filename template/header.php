@@ -21,7 +21,7 @@
   <script src="<?= $main_url ?>asset/AdminLTE-3.2.0/plugins/sweetalert2/sweetalert2.min.js"></script>
   <!-- Theme style -->
   <link rel="stylesheet" href="<?= $main_url ?>asset/AdminLTE-3.2.0/dist/css/adminlte.min.css">
-  <link rel="shortcut icon" href="<?= $main_url ?>asset/image/cart.png" type="image/x-icon">
+  <link rel="shortcut icon" href="<?= $main_url ?>asset/image/logoToko.png" type="image/x-icon">
 </head>
 <!--
 `body` tag options:
