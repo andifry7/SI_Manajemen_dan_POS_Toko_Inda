@@ -11,6 +11,14 @@ function insert($data) {
     $nama = mysqli_real_escape_string($koneksi, $data['nama']);
     $now = date('Y-m-d H:i:s');
 
+    $cekNama = mysqli_query($koneksi, "SELECT * FROM tbl_kategori WHERE nama = '$nama'");
+    if (mysqli_num_rows($cekNama)) {
+        echo '<script>
+            alert("Kategori dengan nama tersebut sudah terdaftar, gagal ditambahkan!");
+        </script>';
+        return false;
+    }
+
     $sqlCategory = "INSERT INTO tbl_kategori (nama, created, updated)
                     VALUES ('$nama', '$now', '$now')";
 
@@ -35,6 +43,22 @@ function update($data) {
 
     $id = mysqli_real_escape_string($koneksi, $data['id']);
     $nama = mysqli_real_escape_string($koneksi, $data['nama']);
+
+    // nama lama
+    $queryNama = mysqli_query($koneksi, "SELECT * FROM tbl_kategori WHERE id_kategori = '$id'");
+    $dataKategori = mysqli_fetch_assoc($queryNama);
+    $curNama = $dataKategori['nama'];
+
+    // jika nama diganti, cek apakah nama baru sudah dipakai kategori lain
+    if ($nama !== $curNama) {
+        $cekNama = mysqli_query($koneksi, "SELECT * FROM tbl_kategori WHERE nama = '$nama'");
+        if (mysqli_num_rows($cekNama)) {
+            echo '<script>
+                alert("Kategori dengan nama tersebut sudah terdaftar, gagal diperbarui!");
+            </script>';
+            return false;
+        }
+    }
 
     $sqlCategory = "UPDATE tbl_kategori SET
                     nama = '$nama'
